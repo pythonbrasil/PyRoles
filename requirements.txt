@@ -1,0 +1,3 @@
+configparser==3.5.0
+flickrapi==2.4.0
+pyTelegramBotAPI==2.1.7
