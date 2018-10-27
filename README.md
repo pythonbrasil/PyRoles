@@ -14,7 +14,7 @@ Como funciona:
 
 ▪️ Não envie nudes. Arrrr, vamos dizer que aqui não é o ambiente apropriado para você mostrar os seus dotes.  
 
-▪️ Fotos com teor racista, homofóbico, violento, ou que infringam, de qualquer forma e maneira, o <a href='https://github.com/pythonbrasil/codigo-de-conduta'>Código de Conduta</a> do evento, serão excluídas, o usuário identificado e banido.
+▪️ Fotos com teor racista, homofóbico, violento, ou que infrinjam, de qualquer forma e maneira, o <a href='https://github.com/pythonbrasil/codigo-de-conduta'>Código de Conduta</a> do evento, serão excluídas, o usuário identificado e banido.
 
 3. Enviou a foto? Recebeu outra mensagem fofinha? Pronto! Você já pode conferir ela e outras no <a href='https://www.flickr.com/photos/160228175@N08/'>álbum PyRolês</a> ! 
 
