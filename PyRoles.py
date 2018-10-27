@@ -14,9 +14,9 @@ api_key = config['FLICKR']['API_KEY']
 api_secret = config['FLICKR']['API_SECRET']
 flickr = flickrapi.FlickrAPI(api_key, api_secret)
 
-if not flickr.token_valid(perms='read'):
+if not flickr.token_valid(perms='delete'):
     flickr.get_request_token(oauth_callback='oob')
-    authorize_url = flickr.auth_url(perms='read')
+    authorize_url = flickr.auth_url(perms='delete')
     print(authorize_url)
     verifier = str(input('Verifier code: '))
     flickr.get_access_token(verifier)
