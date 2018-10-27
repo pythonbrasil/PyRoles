@@ -13,19 +13,14 @@ config.read('pyroles.conf')
 api_key = config['FLICKR']['API_KEY']
 api_secret = config['FLICKR']['API_SECRET']
 flickr = flickrapi.FlickrAPI(api_key, api_secret)
-if not flickr.token_valid(perms='read'):
 
-    try:
-        api_verifier = config['FLICKR']['API_VERIFIER']
-        flickr.get_access_token(api_verifier)
-    except: # TODO: definir corretamente a excecao
-        flickr.get_request_token(oauth_callback='oob')
-        authorize_url = flickr.auth_url(perms='read')
-        print('Visite a URL abaixo e copie o código para o arquivo de configuracao')
-        print('FLICKR - API_VERIFIER')
-        print(authorize_url)
-        quit()
- 
+if not flickr.token_valid(perms='read'):
+    flickr.get_request_token(oauth_callback='oob')
+    authorize_url = flickr.auth_url(perms='read')
+    print(authorize_url)
+    verifier = str(input('Verifier code: '))
+    flickr.get_access_token(verifier)
+
 # autenticando o bot
 TOKEN = config['TGBOT']['TOKEN']
 bot = TeleBot(TOKEN)
