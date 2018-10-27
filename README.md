@@ -19,3 +19,29 @@ Como funciona:
 3. Enviou a foto? Recebeu outra mensagem fofinha? Pronto! Você já pode conferir ela e outras no <a href='https://www.flickr.com/photos/160228175@N08/'>álbum PyRolês</a> ! 
 
 Mudanças no código, ideias mirabolantes e mais integrações são bem-vindas!
+
+# Para instalar o bot
+
+No Telegram:
+1. Procurar pelo @BotFather.
+2. Dar um /start e escrever /newbot no chat.
+3. Dê um nome para o seu bot.
+4. Crie o username dele.
+5. Se tudo der certo ele vai te enviar um token. Esse monte de letrinhas é o que vai fazer o seu bot funcionar e receber atualizações. Guardo com carinho. Caso perca, é só mandar um /token e o @BotFather vai gerar um novo token de acesso para o seu bot.
+
+No Flickr:
+
+1. Faça o seu login no Flickr. 
+2. No <a href='https://www.flickr.com/services/apps/create/'>site</a>, solicite a sua chave de API. Você terá em mãos agora a sua api_key e a sua api_secret. Eles são o que vcoê precisa para fazer o upload para o álbum.
+
+No código:
+1. Faça o download.
+2. Troque os espaços reservados para as suas tokens. 
+3. Rode o programa.
+4. Deve abrir uma janela para você dar a autorização da sua conta para o Flickr. Atenção para a opção de upload estar marcada. 
+
+No bot:
+1. Abra o seu bot.
+2. Dê um /start.
+3. Mande a fotografia. 
+4. Vá ao seu álbum do Flickr e veja gente bonita! ❤️
