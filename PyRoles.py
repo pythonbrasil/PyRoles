@@ -1,16 +1,33 @@
-#importando o que precisa
+# importando o que precisa
 from telebot import TeleBot
 import flickrapi
+import configparser
 
-#autenticando o flickr
-api_key = u'...'
-api_secret = u'...'
+# importando configuracoes
+config = configparser.ConfigParser()
+config.sections()
+config.read('pyroles.conf')
+
+# autenticando o flickr
+api_key = config['FLICKR']['API_KEY']
+api_secret = config['FLICKR']['API_SECRET']
 flickr = flickrapi.FlickrAPI(api_key, api_secret)
-flickr.authenticate_via_browser(perms='delete')
- 
+if not flickr.token_valid(perms='read'):
+
+    try:
+        api_verifier = config['FLICKR']['API_VERIFIER']
+        flickr.get_access_token(api_verifier)
+    except:
+    ## Falta definir corretamente a excecao
+        flickr.get_request_token(oauth_callback='oob')
+        authorize_url = flickr.auth_url(perms='read')
+        print('Visite a URL abaixo e copie o código para o arquivo de configuracao')
+        print('FLICKR - API_VERIFIER')
+        print(authorize_url)
+        return 0
  
 # autenticando o bot
-TOKEN = '...'
+TOKEN = config['TGBOT']['TOKEN']
 bot = TeleBot(TOKEN)
 
 #passando o comando start e help para o bot
