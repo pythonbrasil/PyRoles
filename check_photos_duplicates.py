@@ -1,6 +1,6 @@
 import requests, json
 import hashlib
-USER = '160228175%40N08'
+USER = '160228175%40N08' # usuario que estao as fotos
 URL_BASE = 'https://api.flickr.com/services/rest/'
 API_KEY = ''
 METHOD ='flickr.people.getPublicPhotos'
