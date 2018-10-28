@@ -44,12 +44,18 @@ def checkDuplicate(photo):
     hashPhoto = hashlib.md5(data_foto).hexdigest() 
     hashTable = json.loads(data)
 
+
+
     if (hashPhoto in hashTable.values()):
         return True
+    
     else:
+        
+        hashTable[hashPhoto] = hashPhoto
+        with open('hash_table.txt', 'a') as file:
+            file.write(json.dumps(hashTable))
+        
         return False
-
-
 
 
 # salvando a foto no sistema e fazendo o upload para o flickr 
@@ -66,7 +72,7 @@ def get_doc(message):
             downloaded_file = bot.download_file(file_info.file_path)
             with open(path, 'wb') as new_file:
                 new_file.write(downloaded_file)
-            bot.reply_to(message, "A sua fotografia agora faz parte do <a href='https://www.flickr.com/photos/160228175@N08/'>álbum PyRolês</a> ! \nObrigada por fazer essa comunidade ser tão maravilhosa!💛💙", parse_mode="HTML", disable_web_page_preview=True)
+            bot.reply_to(message, "A sua fotografia agora faz parte do <a href='https://www.flickr.com/photos/160228175@N08/'>álbum PyRolês</a> !!! \nObrigada por fazer essa comunidade ser tão maravilhosa!💛💙", parse_mode="HTML", disable_web_page_preview=True)
             flickr.upload(filename=path, title='PyBR14', description='Python Brasil [14]')
         else:
             bot.reply_to(message, "Foto duplicada.")
