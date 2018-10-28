@@ -38,7 +38,7 @@ def checkDuplicate(photo):
     with open('hash_table.txt', 'r') as file:
         data = file.read()
 
-    with open(str(photo), 'r') as file:
+    with open(str(photo), 'rb') as file:
         data_foto = file.read()
 
     hashPhoto = hashlib.md5(data_foto).hexdigest() 
