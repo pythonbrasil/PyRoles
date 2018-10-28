@@ -2,7 +2,7 @@ import requests, json
 import hashlib
 USER = '160228175%40N08'
 URL_BASE = 'https://api.flickr.com/services/rest/'
-API_KEY = '0983c88c41789586c759c117c1defdf7'
+API_KEY = ''
 METHOD ='flickr.people.getPublicPhotos'
 FORMAT = 'json&nojsoncallback=1'
 url = URL_BASE + '?method='+ METHOD +'&api_key='+ API_KEY +'&user_id='+ USER +'&format='+FORMAT
