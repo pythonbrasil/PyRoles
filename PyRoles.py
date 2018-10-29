@@ -1,4 +1,5 @@
 # importando o que precisa
+import time
 from telebot import TeleBot
 import flickrapi
 import configparser
@@ -52,7 +53,7 @@ def checkDuplicate(photo):
     else:
         
         hashTable[hashPhoto] = hashPhoto
-        with open('hash_table.txt', 'a') as file:
+        with open('hash_table.txt', 'w') as file:
             file.write(json.dumps(hashTable))
         
         return False
@@ -61,25 +62,23 @@ def checkDuplicate(photo):
 # salvando a foto no sistema e fazendo o upload para o flickr 
 @bot.message_handler(content_types=['photo'])
 def get_doc(message):
-    if str(message.chat.id) not in str(config['TGBOT']['ALLOWED']):
-        bot.reply_to(message, "Não permitido.")
+    bot.send_chat_action(message.chat.id, 'upload_photo')
+    raw = message.photo[-1].file_id
+    path = raw+".jpg"
+    file_info = bot.get_file(raw)
+    downloaded_file = bot.download_file(file_info.file_path)
+    with open(path, 'wb') as new_file:
+        new_file.write(downloaded_file)
+
+    if (not checkDuplicate(path)):
+        bot.reply_to(message, "A sua fotografia agora faz parte do <a href='https://www.flickr.com/photos/160228175@N08/'>álbum PyRolês</a> ! \nObrigada por fazer essa comunidade ser tão maravilhosa!💛💙", parse_mode="HTML", disable_web_page_preview=True)
+        flickr.upload(filename=path, title='PyBR14', description='Python Brasil [14]')
     else:
-        bot.send_chat_action(message.chat.id, 'upload_photo')
-        raw = message.photo[-1].file_id
-        path = raw+".jpg"
-        if (not checkDuplicate(path)):
-            file_info = bot.get_file(raw)
-            downloaded_file = bot.download_file(file_info.file_path)
-            with open(path, 'wb') as new_file:
-                new_file.write(downloaded_file)
-            bot.reply_to(message, "A sua fotografia agora faz parte do <a href='https://www.flickr.com/photos/160228175@N08/'>álbum PyRolês</a> !!! \nObrigada por fazer essa comunidade ser tão maravilhosa!💛💙", parse_mode="HTML", disable_web_page_preview=True)
-            flickr.upload(filename=path, title='PyBR14', description='Python Brasil [14]')
-        else:
-            bot.reply_to(message, "Foto duplicada.")
+        bot.reply_to(message, "Foto duplicada.")
 
 
 # apaga a foto do servidor 
-        os.remove(path)
+    os.remove(path)
  
 bot.polling()
 

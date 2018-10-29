@@ -18,7 +18,7 @@ def getPhoto(id_person):
 
 def hashTablePhotos(photos_id):
     photo_dict = {}
-    for photo in photos_id:
+    for photo in photos_id[1:3]:
         url = URL_BASE + '?method=flickr.photos.getSizes&api_key='+API_KEY+'&photo_id='+str(photo)+'&format='+ FORMAT
         urlImagem = requests.get(url)
         idJson = json.loads(urlImagem.content)
