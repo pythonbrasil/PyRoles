@@ -46,6 +46,41 @@ No bot:
 3. Mande a fotografia. 
 4. Vá ao seu álbum do Flickr e veja gente bonita! ❤️
 
+## Estrutura
+
+Atualmente o bot está rodando em um servidor temporário cedido pela APyB em um container docker
+
+### Instalação
+
+Docker +19.03
+docker-compose +1.23.0
+
+Configure o pyroles.conf com seus dados de API e execute:
+
+```sh
+docker-compose build
+```
+
+Depois, execute temporariamente um container para autorizar a app no flicker:
+
+```sh
+docker-compose run bot
+```
+
+Copie a URL exibida no terminal para seu navegador, autorize ela e copie o código dentro do container temporário.
+
+Após a autorização, teste o seu bot e caso esteja funcionando, realize um commit local em sua imagem:
+
+```
+# caso você esteja rodando mais containers além deste, apenas use o nome do container atual
+docker-compose commit $(docker ps -q) pyroles_bot:latest
+```
+
+E por último inicie o container desanexado
+
+```
+docker-compose up -d
+```
 
 # Créditos
 
