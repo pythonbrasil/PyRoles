@@ -45,3 +45,12 @@ No bot:
 2. Dê um /start.
 3. Mande a fotografia. 
 4. Vá ao seu álbum do Flickr e veja gente bonita! ❤️
+
+
+# Créditos
+
+@juditecypreste
+@GabrielRF
+@jgdsfilho
+
+Ajude a manter o bot e aumente esta lista :)
