@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  bot:
+    build:
+      context: .
+      target: pyroles_bot
+    image: 'pyroles_bot:latest'
+    entrypoint: python /src/PyRoles.py
+    restart: unless-stopped
