@@ -16,6 +16,7 @@ config.read('pyroles.conf')
 api_key = config['FLICKR']['API_KEY']
 api_secret = config['FLICKR']['API_SECRET']
 flickr = flickrapi.FlickrAPI(api_key, api_secret)
+evento = config ['ALBUM']['ULTIMO_EVENTO']
 
 if not flickr.token_valid(perms='delete'):
     flickr.get_request_token(oauth_callback='oob')
@@ -32,7 +33,8 @@ bot = TeleBot(TOKEN)
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.send_chat_action(message.chat.id, 'typing')
-    bot.reply_to(message, u"Olá, eu sou o PyRolês[14]! \nEu consigo fazer uploads de todas as fotos dos rolês que aconteceram para o <a href='https://www.flickr.com/photos/160228175@N08/'>álbum PyRolês</a>.\nMas para isso acontecer, é necessário ter em mente algumas regras:\n▪️ O bot aceita apenas fotografias. Gifs e vídeos ainda não são suportados. Ah! E não adianta enviar a foto como documento também, eu só aceito 'ibagens'.\n▪️ Não envie imagens de pessoas caso elas não queiram ou não saibam. Vamos respeitar a vontade do amigo de não querer a sua foto pública.📵\n▪️ Não envie nudes. Arrrr, vamos dizer que aqui não é o ambiente apropriado para você mostrar os seus dotes. \n▪️ Fotos com teor racista, homofóbico, violento, ou que infrinjam, de qualquer forma e maneira, o <a href='https://github.com/pythonbrasil/codigo-de-conduta'>Código de Conduta</a> do evento, serão excluídas, o usuário identificado e banido.\n▪️E lembre-se: \n\nPessoas >>> Tecnologia. \nUm ótimo evento para você!💛💙", parse_mode="HTML", disable_web_page_preview=True)
+    message_return= u"Olá, eu sou o {0}!\nEu consigo fazer uploads de todas as fotos dos rolês que aconteceram para o <a href='https://www.flickr.com/photos/160228175@N08/'>álbum PyRolês</a>.\nMas para isso acontecer, é necessário ter em mente algumas regras:\n▪️ O bot aceita apenas fotografias. Gifs e vídeos ainda não são suportados. Ah! E não adianta enviar a foto como documento também, eu só aceito 'ibagens'.\n▪️ Não envie imagens de pessoas caso elas não queiram ou não saibam. Vamos respeitar a vontade do amigo de não querer a sua foto pública.📵\n▪️ Não envie nudes. Arrrr, vamos dizer que aqui não é o ambiente apropriado para você mostrar os seus dotes. \n▪️ Fotos com teor racista, homofóbico, violento, ou que infrinjam, de qualquer forma e maneira, o <a href='https://github.com/pythonbrasil/codigo-de-conduta'>Código de Conduta</a> do evento, serão excluídas, o usuário identificado e banido.\n▪️E lembre-se: \n\nPessoas >>> Tecnologia. \nUm ótimo evento para você!💛💙".format(evento)
+    bot.reply_to(message,message_return , parse_mode="HTML", disable_web_page_preview=True)
 
 def checkDuplicate(photo):
 
